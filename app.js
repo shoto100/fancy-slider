@@ -81,6 +81,7 @@ const createSlider = () => {
       src="${slide}"
       alt="">`;
       sliderContainer.appendChild(item)
+      document.getElementById('errorMessage').style.display = 'none';
     })
     changeSlide(0)
     timer = setInterval(function () {
@@ -88,10 +89,10 @@ const createSlider = () => {
       changeSlide(slideIndex);
     }, 1000);
 
-    document.getElementById('errorMessage').style.display = 'none';
   }
-  else if (duration < 0) {
-    document.getElementById('errorMessage').style.display = 'block';
+  if (duration < 1000) {
+    const errorMessage = document.getElementById("errorMessage");
+    errorMessage.classList.remove("d-none");
   }
   else {
     sliders.forEach(slide => {
